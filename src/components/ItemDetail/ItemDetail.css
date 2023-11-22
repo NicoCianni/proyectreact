@@ -1,0 +1,41 @@
+.CardItemDetail{
+    border: 5px solid black;
+    border-radius: 10px;
+    width: 400px;
+    height: 550px;
+    padding: 8px;
+    background-color: orange;
+}
+
+.CardItemDetail .Header{
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+.CardItemDetail picture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CardItemDetail .ItemImg{
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+}
+
+.CardItemDetail p{
+    text-align: center;
+}
+
+
+.CardItemDetail .ItemFooter{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 8px;
+}

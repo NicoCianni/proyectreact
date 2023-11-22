@@ -1,0 +1,27 @@
+.Contador{
+    border: 3px solid black;
+    padding: 5px;
+    background-color: grey;
+    border-radius: 10px;
+}
+
+.Contador .Controles{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 30px;
+}
+
+.Contador .Controles .Boton{
+    padding: 8px;
+    background-color: black;
+    color: white;
+}
+
+div .Boton{
+    padding: 8px;
+    background-color: black;
+    color: white;
+    margin: 8px;
+    border-radius: 10px;
+}
