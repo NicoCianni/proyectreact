@@ -6,7 +6,7 @@ const NavBar = () => {
     return (
         <nav className="NavBar" >
             <Link to="/">
-            <h3>Tienda Online</h3>
+            <h3>Tienda Onlinee</h3>
             </Link>
             <div className="Categories">
                 <NavLink to={`/category/graficas`} className={({ isActive}) => isActive ? "ActiveOption" : Option}>Graficas</NavLink>
