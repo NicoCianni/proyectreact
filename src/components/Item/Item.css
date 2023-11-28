@@ -8,6 +8,7 @@
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 20px;
     font-weight: bolder;
+    margin-left: 5px;
 }
 
 .CardItem picture img{
@@ -18,7 +19,7 @@
 }
 
 .CardItem .ItemFooter{
-    margin-top: 22px;
+    margin-top: 15px;
 }
 
 .CardItem .ItemFooter a{
