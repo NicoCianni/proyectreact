@@ -1,31 +1,48 @@
-import "./ItemListContainer.css"
-import { useState, useEffect } from "react"
-import { getProducts, getProductsByCategory } from "../../asyncMock"
-import ItemList from "../ItemList/ItemList"
+import { useState, useEffect, useContext}  from 'react'
+import { getProducts , getProductsByCategory} from '../../asyncMock'
+import ItemList from '../ItemList/ItemList'
+import CartItem from '../CartItem/CartItem'
 
-import { useParams } from "react-router-dom"
+import { CartContext } from '../../context/CartContext'
+import { useParams } from 'react-router-dom'
 
-const ItemListContainer = ({greeting}) => {
-    const [productos, setProductos] = useState([])
+import { getDocs, collection, query, where } from 'firebase/firestore'
+import { db } from '../../services/firebase/firebaseConfig'
+
+const ItemListContainer = ({ greeting }) => {
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const { cart } = useContext(CartContext)
 
     const { categoryId } = useParams()
-    
-    useEffect(() => {
-        const asyncFunc = categoryId ? getProductsByCategory : getProducts
 
-        asyncFunc(categoryId)
-            .then(response => {
-                setProductos(response)
+    useEffect(() => {
+        setLoading(true)
+        const collectionRef = categoryId ?
+            query(collection(db, 'products'), where('categoryId', '==', categoryId))
+            : collection(db, 'products')
+
+        getDocs(collectionRef)
+            .then((querySnapshot) => {
+                const products = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+                setProducts(products)
             })
-            .catch(error => {
-                console.error(error)
+            .catch((error) => {
+                console.log(error)
             })
+            .finally(() => {
+                setLoading(false)
+            }
+        )
+
+
     }, [categoryId])
 
     return (
         <div>
             <h1>{greeting}</h1>
-            <ItemList productos={productos}/>
+            <ItemList products={products}/>
         </div>
     )
 }
