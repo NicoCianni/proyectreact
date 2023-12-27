@@ -1,29 +1,30 @@
-const productos = [
+import { query, where, getDocs, collection, doc, getDoc } from 'firebase/firestore'
+import {db} from './services/firebase/firebaseConfig'
+
+const products = [
     {
         id: "1",
         name: "Nvidia RTX 2060",
         price: 350000,
         category: "graficas",
         img: "https://http2.mlstatic.com/D_NQ_NP_969632-MLA44356664871_122020-O.webp",
-        stock: 3,
+        stock: 12,
         description: "Placa de video Nvidia RTX 2060 6GB"
     },
     {
         id: "2",
-        name: "Nvidia RTX 4060",
         price: 640000,
         category: "graficas",
         img: "https://http2.mlstatic.com/D_NQ_NP_849211-MLU70660224689_072023-O.webp",
-        stock: 10,
+        stock: 12,
         description: "Placa de video Nvidia RTX 4060 12GB"
     },
     {
         id: "3",
-        name: "Radeon RX 6800",
         price: 550000,
         category: "graficas",
         img: "https://http2.mlstatic.com/D_NQ_NP_766765-MLA54412805580_032023-O.webp",
-        stock: 7,
+        stock: 12,
         description: "Placa de video Radeon RX 6800 16GB"
     },
     {
@@ -67,23 +68,31 @@ const productos = [
 export const getProducts = () => {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(productos)
-        }, 500)
+            resolve(products)
+        },500)
     })
 }
 
-export const getProductsById = (productId) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(productos.find(prod => prod.id === productId))
-        }, 500)
-    })
+export const getProductsById = async (productId) => {
+    const productRef = doc(db, 'items', productId)
+    const productSnap = await getDoc(productRef)
+    return productSnap.data()
 }
 
-export const getProductsByCategory = (productCategory) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(productos.filter(prod => prod.category === productCategory))
-        }, 500)
-    })
-}
+export const getProductsByCategory = async (productsCategory) => {
+    try {
+        const q = query(collection(db, 'items'), where('category', '==', productsCategory));
+        const querySnapshot = await getDocs(q);
+
+        const productsData = [];
+
+        querySnapshot.forEach((doc) => {
+            productsData.push({ id: doc.id, ...doc.data() });
+        });
+
+        return productsData;
+    } catch (error) {
+        console.error('Error fetching products by category:', error);
+        throw error;
+    }
+};
