@@ -21,12 +21,12 @@ const ItemListContainer = ({ greeting }) => {
     useEffect(() => {
         setLoading(true)
         const collectionRef = categoryId ?
-            query(collection(db, 'items'), where('categoryId', '==', categoryId))
+            query(collection(db, 'items'), where('category', '==', categoryId))
             : collection(db, 'items')
 
         getDocs(collectionRef)
             .then((querySnapshot) => {
-                const products = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+                const products = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }))
                 setProducts(products)
             })
             .catch((error) => {

@@ -1,0 +1,57 @@
+.Cart div{
+    display: flex;
+    margin: auto;
+    padding: 10px;
+
+}
+
+.total-container{
+    background-color: black;
+    color: white;
+    text-align: center;
+    width: 80px;
+    height: 50px;
+    border-radius: 20px;
+}
+
+.Cart .clear-cart-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.Cart .clear-cart-container button{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: 120px;
+    height: 50px;
+    color: white;
+    background-color: red;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+
+.Cart .full-width-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: 80px;
+    height: 30px;
+    color: white;
+    background-color: green;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+
+.checkout-link{
+    text-decoration: none;
+    color: white;
+}
+
+

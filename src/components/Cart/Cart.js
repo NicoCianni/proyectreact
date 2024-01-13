@@ -19,7 +19,7 @@ const Cart = () => {
     }
 
     return (
-        <div>
+        <div className='Cart'>
             { cart.map(p => <CartItem key={p.id} {...p} onPressDeleteButton={removeItem}/>) }
             <div className={"total-container"}>
                 <h3>Total: ${total}</h3>
